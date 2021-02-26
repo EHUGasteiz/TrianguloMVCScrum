@@ -88,7 +88,6 @@ public class TrianguloRectangulo {
 	 * @require pBase >= 0 
 	 */
 	public void setBase(int pBase) {
-		// TODO: Implementar este metodo
 		if (pBase<0) {
 			throw new IllegalArgumentException();
 		}
