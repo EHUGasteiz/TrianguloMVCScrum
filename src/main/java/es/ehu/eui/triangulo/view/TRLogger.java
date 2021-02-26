@@ -11,7 +11,7 @@ import es.ehu.eui.triangulo.model.TrianguloRectangulo;
 public class TRLogger implements Observer {
 	private Logger logger;
 	private TrianguloRectangulo modelo;
-	
+
 	public TRLogger(TrianguloRectangulo pTriangulo) {
 		logger = Logger.getLogger(TRLogger.class);
 		DOMConfigurator.configure(this.getClass().getResource("/logproperties.xml"));
@@ -21,7 +21,10 @@ public class TRLogger implements Observer {
 	}
 
 	public void update(Observable o, Object arg) {
-		// TODO: modificar el codigo para que refleje los cambios en el log -- logger.info(mensaje)
+		// TODO: modificar el codigo para que refleje los cambios en el log 
+		// String mensaje = String.format("Base: %.2f Altura: %.2f Hipotenusa: %.2f", 
+		//		modelo.getBase(), modelo.getAltura(), modelo.getHipotenusa());
+		// logger.info(mensaje)
 	}
 
 }
