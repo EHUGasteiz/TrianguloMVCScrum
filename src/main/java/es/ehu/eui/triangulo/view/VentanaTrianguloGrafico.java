@@ -1,16 +1,15 @@
 package es.ehu.eui.triangulo.view;
 
 import java.awt.BorderLayout;
-import java.util.Observable;
-import java.util.Observer;
-
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import es.ehu.eui.triangulo.model.TrianguloRectangulo;
 
-public class VentanaTrianguloGrafico extends JFrame implements Observer {
+public class VentanaTrianguloGrafico extends JFrame implements PropertyChangeListener {
 
 	private static final long serialVersionUID = -9184173532085395115L;
 	private JPanel contentPane;
@@ -42,7 +41,7 @@ public class VentanaTrianguloGrafico extends JFrame implements Observer {
 		contentPane.add(getPnlTrianguloGrafico(), BorderLayout.CENTER);
 	}
 
-	public void update(Observable o, Object arg) {
+	public void propertyChange(PropertyChangeEvent evt) {
 		getPnlTrianguloGrafico().dibujarTriangulo(modelo.getBase(),modelo.getAltura());
 
 	}

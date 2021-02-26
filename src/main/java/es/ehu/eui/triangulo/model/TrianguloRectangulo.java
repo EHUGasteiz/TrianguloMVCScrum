@@ -1,8 +1,11 @@
 package es.ehu.eui.triangulo.model;
 
-import java.util.Observable;
+
 
 import static java.lang.Math.*;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * Esta clase representa un triangulo rectangulo. 
@@ -12,12 +15,16 @@ import static java.lang.Math.*;
  * @author mikel
  *
  */
-public class TrianguloRectangulo extends Observable {
+public class TrianguloRectangulo {
 	
 	// Atributos
 	private int base;
 	private int altura;
 	private double hipotenusa;
+	
+	// Para aplicar el Patron Obvserver - gestiona los observadores y se 
+	// encarga de notificar los cambios en el estado
+	private PropertyChangeSupport support;
 	
 	/**
 	 * Crea un triangulo rectangulo con la base y altura indicados
@@ -31,7 +38,19 @@ public class TrianguloRectangulo extends Observable {
 		}
 		base = pBase;
 		altura = pAltura;
+		// Crear la instancia de support
+		support = new PropertyChangeSupport(this);
+		// Calcular la hipotenusa
 		setHipotenusa();
+	}
+	
+	
+	/**
+	 * Registra un nuevo obervador
+	 * @param pList el observer
+	 */
+	public void addObserver(PropertyChangeListener pList) {
+		support.addPropertyChangeListener(pList);
 	}
 
 	// Getters
@@ -83,7 +102,6 @@ public class TrianguloRectangulo extends Observable {
 	 * @require pAltura >= 0 
 	 */
 	public void setAltura(int pAltura) {
-		// TODO: Implementar este metodo
 		if (pAltura<0) {
 			throw new IllegalArgumentException();
 		}
@@ -96,8 +114,7 @@ public class TrianguloRectangulo extends Observable {
 	 */
 	private void setHipotenusa() {
 		this.hipotenusa = sqrt(pow(base,2) + pow(altura,2));
-		setChanged();
-		notifyObservers();
+		// support.firePropertyChange("triangulo", null, null);
 	}
 	
 // TODO: modifica la clase para que avise a las vistas de que se han producido cambios

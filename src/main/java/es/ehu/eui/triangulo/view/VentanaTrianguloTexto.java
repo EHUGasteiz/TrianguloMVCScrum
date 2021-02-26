@@ -7,8 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import es.ehu.eui.triangulo.model.TrianguloRectangulo;
 
-public class VentanaTrianguloTexto extends JFrame implements Observer {
+public class VentanaTrianguloTexto extends JFrame implements PropertyChangeListener {
 
 	private static final long serialVersionUID = 3076804824806109438L;
 	private JPanel contentPane;
@@ -42,7 +42,7 @@ public class VentanaTrianguloTexto extends JFrame implements Observer {
 		initialize();
 		modelo = pTriangulo;
 		modelo.addObserver(this);
-		update(modelo, null);
+		propertyChange(null);
 	}
 	
 	private void initialize() {
@@ -61,7 +61,7 @@ public class VentanaTrianguloTexto extends JFrame implements Observer {
 	 * Actualiza la informacion mostrada en la ventana
 	 * {@see java.util.Observer}
 	 */
-	public void update(Observable observable, Object arg) {
+	public void propertyChange(PropertyChangeEvent evt) {
 		 	// La vista solo observa a un triangulo (modelo)
 		    getTxtBase().setText(String.valueOf(modelo.getBase()));
 		    getTxtAltura().setText(String.valueOf(modelo.getAltura()));
@@ -194,10 +194,11 @@ public class VentanaTrianguloTexto extends JFrame implements Observer {
 				else
 					modelo.setAltura(valor);
 			} catch (NumberFormatException ex) {
-				update(modelo, null);
+				propertyChange(null);
 			}
 
 		}
 
 	}
+
 }

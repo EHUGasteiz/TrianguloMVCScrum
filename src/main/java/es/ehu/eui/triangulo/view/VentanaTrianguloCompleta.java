@@ -9,8 +9,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -38,7 +38,7 @@ import java.awt.SystemColor;
 
 import javax.swing.UIManager;
 
-public class VentanaTrianguloCompleta extends JFrame implements Observer {
+public class VentanaTrianguloCompleta extends JFrame implements PropertyChangeListener {
 
 	private static final long serialVersionUID = -2890366257923997969L;
 	private JPanel contentPane;
@@ -85,7 +85,7 @@ public class VentanaTrianguloCompleta extends JFrame implements Observer {
 		initialize();
 		modelo = pTriangulo;
 		modelo.addObserver(this);
-		update(modelo, null);
+		propertyChange(null);
 	}
 
 	private void initialize() {
@@ -283,7 +283,7 @@ public class VentanaTrianguloCompleta extends JFrame implements Observer {
 		return rdbtnNegro;
 	}
 
-	public void update(Observable o, Object arg) {
+	public void propertyChange(PropertyChangeEvent evt) {
 		// Actualizar los cuadros de texto
 		int base = modelo.getBase();
 		int altura = modelo.getAltura();
@@ -317,7 +317,7 @@ public class VentanaTrianguloCompleta extends JFrame implements Observer {
 					else
 						modelo.setAltura(valor);
 				} catch (NumberFormatException ex) {
-					update(modelo, null);
+					propertyChange(null);
 				}
 			} else {
 				// Se han cambiado las opciones
@@ -328,12 +328,12 @@ public class VentanaTrianguloCompleta extends JFrame implements Observer {
 				} else {
 					selectedColor = Color.RED;
 				}
-				update(modelo, null);
+				propertyChange(null);
 			}
 		}
 
 		public void stateChanged(ChangeEvent e) {
-			update(modelo, null);
+			propertyChange(null);
 		}
 
 	}
@@ -355,4 +355,5 @@ public class VentanaTrianguloCompleta extends JFrame implements Observer {
 		}
 		return sldGrosor;
 	}
+
 }
