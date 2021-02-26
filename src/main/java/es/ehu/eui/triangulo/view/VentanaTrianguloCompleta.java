@@ -61,22 +61,7 @@ public class VentanaTrianguloCompleta extends JFrame implements Observer {
 	private JPanel pnlGrosor;
 	private JSlider sldGrosor;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaTrianguloCompleta frame = new VentanaTrianguloCompleta(
-							new TrianguloRectangulo(10, 10));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.

@@ -83,7 +83,6 @@ public class TrianguloRectangulo extends Observable {
 	 * @require pAltura >= 0 
 	 */
 	public void setAltura(int pAltura) {
-		// TODO: Implementar este metodo
 		if (pAltura<0) {
 			throw new IllegalArgumentException();
 		}
