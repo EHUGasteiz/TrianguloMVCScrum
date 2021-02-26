@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" threshold="debug">
+  <appender name="appender" class="org.apache.log4j.RollingFileAppender">
+    <param name="File" value="triangulo.log"/>
+    <param name="MaxFileSize" value="1000KB"/>
+    <param name="MaxBackupIndex" value="10"/>
+    <param name="Append" value="false"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %p - %m%n"/>
+    </layout>
+  </appender>
+  <appender name="LF5Appender" class="org.apache.log4j.lf5.LF5Appender">
+     <param name="MaxNumberOfRecords" value="1000"/> 
+  </appender>
+  <root>
+    <priority value ="info"/>
+    <appender-ref ref="appender"/><!--<appender-ref ref="LF5Appender"/>-->
+  </root>
+
+</log4j:configuration>
